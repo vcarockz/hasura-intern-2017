@@ -1,1 +1,0 @@
-# hasura-intern-2017
