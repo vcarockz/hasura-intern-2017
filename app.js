@@ -64,7 +64,7 @@ app.get('/getcookies', function(req,res){
 	
 });
 
-// Listening to the requests on port 8080
+//Server listening to the requests on port 8080
 app.listen(8080, function(){
 	console.log("Listening to server on port 8080!");
 });
