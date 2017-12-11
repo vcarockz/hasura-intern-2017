@@ -17,28 +17,33 @@ app.use(cookieParser());
 // Default endpoint
 app.get('/',function(req,res){
 	res.send(Template('Hello','Ashwin VC',''));
+	console.log('SUCCESS--> Home Page')
 });
 
 // Forbidden Access
 app.get('/robots.txt',function(req,res){
 	res.status(403).send(Template('Access Forbidden','ERROR 403',''));
-});
+	console.log('SUCCESS--> Robots Page')
+});	
 
 // Rendering a HTML Page
 app.get('/html',function(req,res){
 	res.sendFile(path.join(__dirname,'./test.html'))
-	console.log('SUCCESS Rendered page test.html');
+	console.log('SUCCESS--> HTML Webpage');
+
 });
 
 // Text Input Endpoint
 app.get('/input',function(req,res){
 	res.sendFile(path.join(__dirname,'./form.html'));
+	console.log('SUCCESS--> Input Page')
 });
 
 //Response to POST request from input page
 app.post('/input',urlencodedParser, function(req,res){ 
 	console.log('DATA Received: ', req.body);
 	res.send(Template('Data Entered:','Name: '+ req.body.name, 'Message: '+req.body.message))
+	console.log('SUCCESS--> Input data displayed')
 });
 
 //Cookies Set Endpoint 
@@ -46,9 +51,12 @@ app.get('/setcookie',function(req,res){
 	if(JSON.stringify(req.cookies)==='{}'){
 		res.cookie('name','Ashwin VC');
 		res.cookie('age','18');
-		res.send(Template('Cookies are now set','',''));}
+		res.send(Template('Cookies are now set','',''));
+		console.log('SUCCESS-->Cookies set')
+	}
 	else {
 		res.send(Template('Dont take so much pain buddy...','Cookies have already been set',''));
+		console.log('SUCCESS-->Cookies already set')
 	}
 });
 
@@ -73,6 +81,7 @@ app.get('/delcookie',function(req,res){
 		res.clearCookie('age');
 		res.send(Template('Deleted all cookies','',''));
 	}
+	console.log('SUCCESS-->Cookies deleted')
 });
 
 //Server listening to the requests on port 8080
